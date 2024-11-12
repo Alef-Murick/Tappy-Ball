@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-    int score;
+    public int score;
 
     void Awake()
     {
@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         PlayerPrefs.SetInt("Score", 0);
+        InvokeRepeating("IncrementScore", 0.2f, 1f);
     }
 
     // Update is called once per frame
