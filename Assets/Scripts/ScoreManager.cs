@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
     public int score;
+    public int highScore;
 
     void Awake()
     {
@@ -14,17 +15,11 @@ public class ScoreManager : MonoBehaviour
             Instance = this;
         }
     }
+
     void Start()
     {
         score = 0;
-        PlayerPrefs.SetInt("Score", 0);
-        InvokeRepeating("IncrementScore", 0.2f, 1f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        highScore = PlayerPrefs.GetInt("HighScore", 0); // Load saved HighScore
     }
 
     public void IncrementScore()
@@ -36,16 +31,14 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Score", score);
 
-        if (PlayerPrefs.HasKey("HighScore"))
+        // Update the high score only if the current score is greater
+        if (score > highScore)
         {
-            if (score >= PlayerPrefs.GetInt("HighScore"))
-            {
-                PlayerPrefs.SetInt("HighScore", score);
-            }
-            else
-            {
-                PlayerPrefs.SetInt("HighScore", score);
-            }
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
         }
+
+        // Save changes immediately
+        PlayerPrefs.Save();
     }
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PipeRemover
+  - Pipe
+  - ScoreChecker
+  - Ground
   layers:
   - Default
   - TransparentFX

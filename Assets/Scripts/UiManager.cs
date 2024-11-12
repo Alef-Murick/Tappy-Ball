@@ -8,7 +8,10 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public GameObject gameOverPanel;
+    public GameObject startUI;
+    public GameObject gameOverText;
 
     void Awake()
     {
@@ -29,8 +32,14 @@ public class UiManager : MonoBehaviour
         scoreText.text = ScoreManager.Instance.score.ToString();
     }
 
+    public void GameStart()
+    {
+        startUI.SetActive(false);
+    }
     public void GameOver()
     {
+        gameOverText.SetActive(true);
+        highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore");
         gameOverPanel.SetActive(true);
     }
 

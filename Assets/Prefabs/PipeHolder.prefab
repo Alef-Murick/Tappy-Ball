@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7896650804936255195}
   m_Layer: 0
   m_Name: ScoreChecker
-  m_TagString: Untagged
+  m_TagString: ScoreChecker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8126414825090582075}
   m_Layer: 0
   m_Name: TappyPipe
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 4945333626019777622}
   m_Layer: 0
   m_Name: TappyPipe (1)
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

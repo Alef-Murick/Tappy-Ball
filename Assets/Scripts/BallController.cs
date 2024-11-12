@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour
     public float upForce;
     bool started;
     bool gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,10 @@ public class BallController : MonoBehaviour
             {
                 started = true;
                 rb.isKinematic = false;
+                GameManager.Instance.GameStart();
             }
         }
-        else
+        else if (started && !gameOver)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -37,11 +39,18 @@ public class BallController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        gameOver = true;
+        GameManager.Instance.GameOver();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Pipe")
+        if (other.gameObject.tag == "Pipe" && !gameOver)
         {
             gameOver = true;
+            GameManager.Instance.GameOver();
         }
 
         if (other.gameObject.tag == "ScoreChecker" && !gameOver)

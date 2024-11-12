@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static GameManager Instance;
+    bool gameOver;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void Start()
     {
-        
+        gameOver = true;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void GameStart()
+    {
+        UiManager.Instance.GameStart();
+        GameObject.Find("PipeSpawner").GetComponent<PipeSpawner>().StartSpawningPipes();
+    }
+
+    public void GameOver()
+    {
+        gameOver = false;
+        GameObject.Find("PipeSpawner").GetComponent<PipeSpawner>().StopSpawningPipes();
+        ScoreManager.Instance.StopScore();
+        UiManager.Instance.GameOver();
     }
 }
